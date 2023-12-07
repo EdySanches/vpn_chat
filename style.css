@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+  
+  html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+    background-color: #f3f3f3;
+    height: 100vh;
+    padding: 2rem;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+  }
+  
+  .welcome {
+    font-size: 1.9rem;
+    font-weight: 500;
+  }
+  
+  .logo {
+    height: 5.25rem;
+  }
+  
+  /* CONTATO */
+  .contato {
+    max-width: 60em;
+    display: flex;
+    align-items: baseline;
+    padding: 0 0.3rem;
+    margin-top: 1rem;
+  }
+  .ctt_github {
+    font-size: 1.5em;
+    grid-row: 1 / 3;
+    display: flex;
+    align-items: baseline;
+    padding: 0 0.3rem;
+    margin-top: 1rem;
+    margin-right: 1rem; 
+  }
+  .ctt_whatsapp {
+    font-size: 1.5rem;
+    grid-row: 3 / 3;
+    display: flex;
+    align-items: baseline;
+    padding: 0 0.3rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+  
+  
+  /* MAIN */
+  .app {
+    position: relative;
+    max-width: 100rem;
+    margin: 4rem auto;
+    /* display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-template-rows: auto repeat(3, 15rem) auto; */
+    gap: 2rem;
+  
+    transition: all 1s;
+  }
+  
+  
+  /* BLOCO */
+  .bloco {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 1rem;
+  }
+  
+  .bloco_titulo {
+    font-weight: bold;
+    font-size: 2em;
+    padding: 2.25rem 4rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .bloco_texto {
+    font-size: 13px;
+    padding-top: 2.25rem;
+    padding-left: 4rem;
+    padding-bottom: 2.25rem ;
+    /* display: flex; */
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* EXPERIENCIAS */
+  .exp_titulo_nome {
+    font-size: 16px;
+    padding-top: 1rem;
+    padding-left: 4rem;
+    padding-bottom: 0.05rem ;
+  }
+  
+  .exp_titulo_tempo {
+    font-size: 14px;
+    padding-top: 0.25rem;
+    padding-left: 4rem;
+    padding-bottom: 0.05rem ;
+  }

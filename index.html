@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>SafeTalk</title>
+    <link rel="icon" type="image/x-icon" href="./icon.ico" />
+  </head>
+  <body>
+    <!-- TOP NAVIGATION -->
+    <nav>
+      <p class="welcome">SafeTalk VPN </p>
+      <img src="vpn_logo.png" alt="Logo" class="logo" />
+
+      <div class="contato">
+        <div class="ctt_github">
+          <p>
+            <a href="https://www.linkedin.com/in/edy-sanches-25232b196//">GitHub</a>
+          </p>
+        </div>
+      </div>
+    </nav>
+
+    <main class="app">
+
+      <!-- MOVEMENTS -->
+      <div class="bloco">
+        <div class="bloco_titulo">
+          About the dev
+        </div>
+        
+        <div class="bloco_texto">
+          <p> I'm a guy who broke many PCB boards as a kid, to see the how the digital systems works on the real world.</p>
+          <p> A computer lover, searching for creative and effective solutions for the problems we face on the road.</p>
+          <p>   Computer Engineering College in progress.</p> 
+          <p>   NodeJS/Typescript Backend Developer.</p>
+          <p>   Working on back-end on IoT solutions and embedded technologies.</p>
+          <p>Always willing to learn.</p>
+        </div>
+      </div>
+      
+    </main>
+
+    <!-- <footer>
+      &copy; by Edy Sanches
+    </footer> -->
+
+    <script>
+      const socket = new WebSocket('ws://localhost:3000'); // Replace with your server address
+
+      socket.addEventListener('message', (event) => {
+        const messagesContainer = document.getElementById('messages');
+        messagesContainer.innerHTML += `<p>${event.data}</p>`;
+      });
+
+      function sendMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value.trim();
+
+        if (message !== '') {
+          socket.send(message);
+          messageInput.value = '';
+        }
+      }
+    </script>
+  </body>
+</html>

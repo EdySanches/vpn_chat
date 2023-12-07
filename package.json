@@ -1,0 +1,23 @@
+{
+  "name": "chat_vpn",
+  "version": "1.0.0",
+  "description": "chat para a vpn de redes II",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdySanches/vpn_chat.git"
+  },
+  "keywords": [
+    "chat",
+    "vpn"
+  ],
+  "author": "edy sanches, kelvin klayn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdySanches/vpn_chat/issues"
+  },
+  "homepage": "https://github.com/EdySanches/vpn_chat#readme"
+}
