@@ -22,6 +22,7 @@
   "homepage": "https://github.com/EdySanches/vpn_chat#readme",
   "dependencies": {
     "eslint": "^8.55.0",
+    "ts-node": "^10.9.2",
     "ws": "^8.14.2"
   }
 }

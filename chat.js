@@ -21,7 +21,7 @@ const msg2 = {
     payload: 'bbbbbbbbbbbbbbbbbbbb',
     data: format_time(new Date())
 }
-const mensagens_array = [ msg1, msg2, msg1, msg2, msg1, msg2, msg1, msg2 ]
+const mensagens_array = [ msg1, msg2, msg1, msg2 ]
 
 init_web_socket(ip, username)
 
@@ -39,6 +39,7 @@ function init_web_socket(ip, username) {
         socket = new WebSocket(`ws://${cleanIp}`);
         socket.addEventListener('message', (event) => {
           try {
+            console.log('event', event)
             // Tente analisar a mensagem como JSON
             const mensagemRecebida = JSON.parse(event.data);
     
@@ -74,15 +75,14 @@ function display_messages (msgs_arr) {
 
 function adicionarMensagem(mensagem) {
 
-    console.log(mensagem.username)
-    console.log(mensagem.payload)
-    console.log(mensagem.data)
+    // console.log(mensagem.username)
+    // console.log(mensagem.payload)
+    // console.log(mensagem.data)
     let novaMensagem = {
         "username": mensagem.username,
         "payload": mensagem.payload,
         "data": mensagem.data
     }
-    mensagens_array.push(novaMensagem);
 
     // Atualizar a tela com as novas mensagens
     display_messages(mensagens_array);
