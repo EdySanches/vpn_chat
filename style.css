@@ -1,3 +1,4 @@
+  /* GERAL */
 * {
     margin: 0;
     padding: 0;
@@ -33,6 +34,26 @@
     height: 5.25rem;
   }
   
+  .input_text_field {
+    appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #1e76e9;
+	background: rgba(#1e76e9, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #1e76e9;
+
+  }
+
+  .app {
+    position: relative;
+    max-width: 100rem;
+    margin: 4rem auto;
+    gap: 2rem;
+    transition: all 1s;
+  }
+
   /* CONTATO */
   .contato {
     max-width: 60em;
@@ -49,32 +70,55 @@
     padding: 0 0.3rem;
     margin-top: 1rem;
     margin-right: 1rem; 
-  }
-  .ctt_whatsapp {
-    font-size: 1.5rem;
-    grid-row: 3 / 3;
-    display: flex;
-    align-items: baseline;
-    padding: 0 0.3rem;
-    margin-top: 1rem;
-    margin-left: 1rem;
-  }
+  }  
   
-  
-  /* MAIN */
-  .app {
-    position: relative;
-    max-width: 100rem;
-    margin: 4rem auto;
-    /* display: grid;
-    grid-template-columns: 4fr 3fr;
-    grid-template-rows: auto repeat(3, 15rem) auto; */
-    gap: 2rem;
-  
+  /* CADASTRO */
+  .form_cadastro {
+    background-color: #fff;
+    padding-top: 2.25rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 0.25rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-right: 4rem;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    display: grid;
     transition: all 1s;
+    opacity: 100;
+    z-index: 1;
   }
   
-  
+  .input_cadastro {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  .btn_salvar_cadastro {
+    background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 4rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-left: 50rem;
+  }
+
   /* BLOCO */
   .bloco {
     width: 100%;
@@ -99,19 +143,50 @@
     /* display: flex; */
     align-items: center;
     border-bottom: 1px solid #eee;
+    max-height: 50rem;
   }
   
-  /* EXPERIENCIAS */
-  .exp_titulo_nome {
-    font-size: 16px;
-    padding-top: 1rem;
+  /* CHAT */
+  .bloco_chat {
+    padding-top: 2.25rem;
     padding-left: 4rem;
-    padding-bottom: 0.05rem ;
+    padding-right: 4rem;
+    padding-bottom: 0.25rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    opacity: 0;
+    display: block;
+    z-index: 2;
+    background-color:  yellow;
+    max-height: 250px;
+    margin-right: 4rem;
+  }
+
+  .bloco_msgs {
+    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: block;
+    max-height: 200px;
+    overflow-y: scroll;
   }
   
-  .exp_titulo_tempo {
-    font-size: 14px;
-    padding-top: 0.25rem;
-    padding-left: 4rem;
-    padding-bottom: 0.05rem ;
+  .send_msgs {
+    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .unidade_msg {
+    background-color: blueviolet;
+    border: 1px solid #444 ;
+    border-radius: 5px;
+    padding: 1rem 2rem 1rem 0.5rem;
+    margin-bottom: 10px;
+  }
+  .unidade_msg_nome {
+    font-size: 12px;
+  }
+  .unidade_msg_payload {
+    font-size: 10px;
   }
