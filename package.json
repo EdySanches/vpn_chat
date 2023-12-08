@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/EdySanches/vpn_chat/issues"
   },
-  "homepage": "https://github.com/EdySanches/vpn_chat#readme"
+  "homepage": "https://github.com/EdySanches/vpn_chat#readme",
+  "dependencies": {
+    "eslint": "^8.55.0"
+  }
 }
