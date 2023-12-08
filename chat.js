@@ -28,56 +28,89 @@ init_web_socket(ip, username)
 /* funcoes */
 function init_web_socket(ip, username) {
     
-    display_messages(mensagens_array)
+    display_messages(mensagens_array);
 
-    console.log(new Date(), `init_web_socket -- ip: ${ip}, username: ${username}`)
+    const cleanIp = ip.replace(/^http:\/\//, '');
+    //console.log(cleanIp)
+    //console.log(new Date(), `init_web_socket -- cleanIp: ${cleanIp}, username: ${username}`);
 
-    try{
-        socket = new WebSocket(`ws://${ip}`)
+    try {
+        // Corrigindo o formato da URL removendo "http//"
+        socket = new WebSocket(`ws://${cleanIp}`);
         socket.addEventListener('message', (event) => {
-      
-            mensagens_array.push(event.data)
-            display_messages(mensagens_array)
-        })
-        console.log(socket)
+          try {
+            // Tente analisar a mensagem como JSON
+            const mensagemRecebida = JSON.parse(event.data);
     
-    }catch(err){
-        console.log()
-    }
+            adicionarMensagem(mensagemRecebida);
+          } catch (error) {
+            console.error('Erro ao analisar a mensagem JSON:', error);
+          }
+        });
+      } catch (err) {
+        console.error(err);
+      }
 }
 
 function display_messages (msgs_arr) {
-    console.log(new Date(), "display_messages -- messages_container:", messages_container)
-    console.log(new Date(), "display_messages -- msgs:", msgs_arr)
+    /*console.log(new Date(), "display_messages -- messages_container:", messages_container)
+    console.log(new Date(), "display_messages -- msgs:", msgs_arr)*/
 
     msgs_arr.forEach(function (msg, i) {
+        const messageString = typeof msg === 'object' ? JSON.stringify(msg) : msg;
+
+
+        const messageObject = JSON.parse(messageString);
         const html = `
         <div class="unidade_msg">
-            <div class="unidade_msg_nome">${msg.username}</div>
-            <div class="unidade_msg_payload">${msg.payload}</div>
-            <div class="unidade_msg_date">${msg.data}</div>
+            <div class="unidade_msg_nome">${messageObject.username}</div>
+            <div class="unidade_msg_payload">${messageObject.payload}</div>
+            <div class="unidade_msg_date">${messageObject.data}</div>
             </div>
         `
         messages_container.insertAdjacentHTML('afterbegin', html)
     })
 }
 
-function send_message() {
-    const msg = document.getElementById('input_mensagem');
-    const msg_payload = msg.value.trim()
-    // TODO username, payload e data
-    const mensagem = {
-        username: username,
-        payload: msg_payload,
-        data: new Date()
-    }
-    mensagens_array.push(mensagem)
+function adicionarMensagem(mensagem) {
 
-    if (mensagem !== '') {
-      socket.send(mensagem)
-      mensagem.value = ''
+    console.log(mensagem.username)
+    console.log(mensagem.payload)
+    console.log(mensagem.data)
+    let novaMensagem = {
+        "username": mensagem.username,
+        "payload": mensagem.payload,
+        "data": mensagem.data
+    }
+    mensagens_array.push(novaMensagem);
+
+    // Atualizar a tela com as novas mensagens
+    display_messages(mensagens_array);
+}
+
+function send_message() {
+    const msgInput = document.getElementById('input_mensagem');
+    const msg_payload = msgInput.value.trim();
+
+    if (msg_payload !== '') {
+        const mensagem = {
+            "username": username,
+            "payload": msg_payload,
+            "data": format_time(new Date())
+        }
+
+        const mensagemString = JSON.stringify(mensagem);
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(mensagemString);
+        } else {
+            console.error('O WebSocket não está aberto.');
+        }
+        adicionarMensagem(mensagem);
+        // Limpando o campo de mensagem
+        msgInput.value = '';
     }
 }
+
 
 function format_time(date) {
     if (!(date instanceof Date)) {
