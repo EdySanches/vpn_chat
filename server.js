@@ -1,59 +1,46 @@
-const WebSocketServer = require('ws');
+const WebSocket = require('ws');
+const http = require('http');
 
-const wss1 = new WebSocketServer.Server({ port: 8082 });
-const wss2 = new WebSocketServer.Server({ port: 8083 });
-
-wss1.on("connection", ws1 => {
-  console.log(`New guest connected to wss1`);
-
-  ws1.on("message", data => {
-    console.log(`Client has sent us (wss1):`, data.toString());
-
-    // Atualizar dadoss1 e enviar a mensagem para wss2
-
-    transmitirMensagem(data.toString(), wss2);
-  });
-
-  ws1.on("close", () => {
-    console.log("the client has disconnected from wss1");
-  });
-
-  ws1.onerror = function () {
-    console.log("Some Error occurred on wss1");
-  }
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('WebSocket Server');
 });
 
-wss2.on("connection", ws2 => {
-  console.log(`New guest connected to wss2`);
+const wss = new WebSocket.Server({ server });
 
-  ws2.on("message", data => {
-    console.log(`Client has sent us (wss2):`, data.toString());
+wss.on('connection', (ws) => {
+  console.log('Client connected');
 
-    // Atualizar dadoss2 e enviar a mensagem para wss1
-    transmitirMensagem(data.toString(), wss1);
+  ws.on('message', (message, isBinary) => {
+    console.log(`Received: ${message}`);
+
+    wss.clients.forEach((client) => {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        client.send(message, { binary: isBinary });
+      }
+    });
   });
 
-  ws2.on("close", () => {
-    console.log("the client has disconnected from wss2");
+  ws.on('close', () => {
+    console.log('Client disconnected');
   });
-
-  ws2.onerror = function () {
-    console.log("Some Error occurred on wss2");
-  }
 });
 
-function transmitirMensagem(mensagem, destino) {
-  console.log(JSON.stringify(mensagem))
-  destino.clients.forEach(ws => {
-    if (ws.readyState === WebSocketServer.OPEN) {
-      ws.send((mensagem), (error) => {
-        if (error) {
-          console.error(`Error sending message: ${error.message}`);
-        }
-      });
-    }
-  });
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
+});
+
+function objectToArrayBuffer(obj) {
+  // Convert the object to a JSON string
+  const jsonString = JSON.stringify(obj);
+
+  // Create a TextEncoder to encode the string into bytes
+  const encoder = new TextEncoder();
+  const encodedData = encoder.encode(jsonString);
+
+  // Create an ArrayBuffer from the encoded bytes
+  const arrayBuffer = encodedData.buffer;
+
+  return arrayBuffer;
 }
-
-console.log("The WebSocket server is running on port 8082");
-console.log("The WebSocket server is running on port 8083");

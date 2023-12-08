@@ -37,12 +37,20 @@ function init_web_socket(ip, username) {
     try {
         // Corrigindo o formato da URL removendo "http//"
         socket = new WebSocket(`ws://${cleanIp}`);
+        console.log(socket)
+
+        socket.addEventListener('open', (event) => {
+            console.log('Connected to WebSocket server');
+        });
+          
         socket.addEventListener('message', (event) => {
-          try {
-            console.log('event', event)
+        try {
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            console.log('event', JSON.stringify(event))
             // Tente analisar a mensagem como JSON
             const mensagemRecebida = JSON.parse(event.data);
-    
+            console.log('mensagemRecebida', mensagemRecebida)
+
             adicionarMensagem(mensagemRecebida);
           } catch (error) {
             console.error('Erro ao analisar a mensagem JSON:', error);
@@ -54,9 +62,8 @@ function init_web_socket(ip, username) {
 }
 
 function display_messages (msgs_arr) {
-    /*console.log(new Date(), "display_messages -- messages_container:", messages_container)
-    console.log(new Date(), "display_messages -- msgs:", msgs_arr)*/
-
+    /*console.log(new Date(), "display_messages -- messages_container:", messages_container)*/
+    console.log(new Date(), "display_messages -- msgs:", msgs_arr.length)
     msgs_arr.forEach(function (msg, i) {
         const messageString = typeof msg === 'object' ? JSON.stringify(msg) : msg;
 
@@ -75,14 +82,15 @@ function display_messages (msgs_arr) {
 
 function adicionarMensagem(mensagem) {
 
-    // console.log(mensagem.username)
-    // console.log(mensagem.payload)
-    // console.log(mensagem.data)
+    console.log(mensagem.username)
+    console.log(mensagem.payload)
+    console.log(mensagem.data)
     let novaMensagem = {
         "username": mensagem.username,
         "payload": mensagem.payload,
         "data": mensagem.data
     }
+    mensagens_array.push(novaMensagem)
 
     // Atualizar a tela com as novas mensagens
     display_messages(mensagens_array);
@@ -99,9 +107,10 @@ function send_message() {
             "data": format_time(new Date())
         }
 
-        const mensagemString = JSON.stringify(mensagem);
+        const mensagem_buffer = JSON.stringify(mensagem);
+
         if (socket.readyState === WebSocket.OPEN) {
-            socket.send(mensagemString);
+            socket.send(mensagem_buffer);
         } else {
             console.error('O WebSocket não está aberto.');
         }
@@ -110,7 +119,6 @@ function send_message() {
         msgInput.value = '';
     }
 }
-
 
 function format_time(date) {
     if (!(date instanceof Date)) {
