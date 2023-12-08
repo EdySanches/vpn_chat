@@ -33,7 +33,7 @@ function init_web_socket(ip, username) {
     console.log(new Date(), `init_web_socket -- ip: ${ip}, username: ${username}`)
 
     try{
-        socket = new WebSocket(`ws://${ip}`)
+        socket = new 'WebSocket'(`ws://${ip}`)
         socket.addEventListener('message', (event) => {
       
             mensagens_array.push(event.data)

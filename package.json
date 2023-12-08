@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/EdySanches/vpn_chat#readme",
   "dependencies": {
-    "eslint": "^8.55.0"
+    "eslint": "^8.55.0",
+    "ws": "^8.14.2"
   }
 }

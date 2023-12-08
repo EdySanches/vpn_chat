@@ -77,7 +77,6 @@
     padding-left: 4rem;
     padding-right: 4rem;
     padding-bottom: 0.25rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     margin-right: 4rem;
     margin-bottom: 20px;
@@ -131,6 +130,9 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* display: inline-block; */
+
   }
   
   .bloco_texto {
@@ -142,6 +144,8 @@
     align-items: center;
     border-bottom: 1px solid #eee;
     max-height: 50rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   }
   
   /* CHAT */
@@ -155,6 +159,8 @@
     z-index: 2;
     background-color:  #620d93,;
     max-height: 300rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   }
 
   .bloco_msgs {
@@ -165,6 +171,8 @@
     display: block;
     max-height: 200px;
     overflow-y: scroll;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
   }
 
   .input_mensagem {
@@ -214,6 +222,7 @@
     margin-right: 50%;
     display: inline-block;
   }
+
   .unidade_msg_title {
     display: inline;
   }
