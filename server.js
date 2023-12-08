@@ -1,19 +1,21 @@
-const WebSocket = require('ws')
-
-const websocket = new WebSocket.Server({ port: 8080 })
-
-let connections = [];
-
-// httpserver.listen(8080, () => console.log("My server is listening on port 8080"))
-
-//when a legit websocket request comes listen to it and get the connection .. ond 
-websocket.on("request", request => {
-    const connection = request.accept(null, request.origin)
-    connection.on("message", message => {
-        connections.forEach( c => c.send(`Usuario ${connection.socket.remotePort} disse ${message.utf8Data}!`)  )
-    })
-    //someone just sent a message tell everybody
-    connections.push(connection)
-    //someone just connected, tell everybody
-    connections.forEach( c => c.send(`Usuario ${connection.socket.remotePort} se conectou!`) )
-})
+const WebSocketServer = require('ws');
+ 
+const wss = new WebSocketServer.Server({ port: 8080 })
+ 
+wss.on("connection", ws => {
+    console.log(`New guest connected`);
+ 
+    ws.send(`username:ex/payload:ex`);
+ 
+    ws.on("message", data => {
+        console.log(`Client has sent us:`, data.toString())
+    });
+ 
+    ws.on("close", () => {
+        console.log("the client has disconnected");
+    });
+    ws.onerror = function () {
+        console.log("Some Error occurred")
+    }
+});
+console.log("The WebSocket server is running on port 8080");

@@ -33,12 +33,13 @@ function init_web_socket(ip, username) {
     console.log(new Date(), `init_web_socket -- ip: ${ip}, username: ${username}`)
 
     try{
-        socket = new 'WebSocket'(`ws://${ip}`)
+        socket = new WebSocket(`ws://${ip}`)
         socket.addEventListener('message', (event) => {
       
             mensagens_array.push(event.data)
             display_messages(mensagens_array)
         })
+        console.log(socket)
     
     }catch(err){
         console.log()
@@ -62,8 +63,8 @@ function display_messages (msgs_arr) {
 }
 
 function send_message() {
-    const msg_payload = document.getElementById('messageInput').value.trim();
-
+    const msg = document.getElementById('input_mensagem');
+    const msg_payload = msg.value.trim()
     // TODO username, payload e data
     const mensagem = {
         username: username,
