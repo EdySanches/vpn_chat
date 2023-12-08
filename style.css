@@ -34,16 +34,14 @@
     height: 5.25rem;
   }
   
-  .input_text_field {
+  .input_cad_field {
     appearance: none;
     border: none;
     outline: none;
-    border-bottom: .2em solid #1e76e9;
-    background: rgba(#1e76e9, .2);
+    border-bottom: .2em solid rgb(156, 96, 212);
+    background-color: transparent;
     border-radius: .2em .2em 0 0;
     padding: .4em;
-    color: #1e76e9;
-
   }
 
   .app {
@@ -98,14 +96,13 @@
   }
 
   .btn_salvar_cadastro {
-    background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+    background-color: rgb(156, 96, 212);
     border-radius: 8px;
     border-style: none;
     box-sizing: border-box;
     color: #FFFFFF;
     cursor: pointer;
     flex-shrink: 0;
-    font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
     font-size: 16px;
     font-weight: 500;
     height: 4rem;
@@ -161,30 +158,77 @@
   }
 
   .bloco_msgs {
+    color: black;
     border: 1px solid #444;
-    padding: 30px 0px;
+    padding: 30px 10px;
     margin-bottom: 10px;
     display: block;
     max-height: 200px;
     overflow-y: scroll;
   }
-  
+
+  .input_mensagem {
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: .2em solid rgb(156, 96, 212);
+    background: transparent;
+    border-radius: .2em .2em 0 0;
+    padding: .4em;
+    color: rgb(156, 96, 212);
+    width: 85%;
+  }
+
   .send_msgs {
-    border: 1px solid red;
-    padding: 10px;
+    border: 1px solid #444;
     margin-bottom: 10px;
+    padding: 10px 10px;
+  }
+
+  .btn_enviar_mensagem {
+    background-color: rgb(156, 96, 212);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 500;
+    height: 4rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-left: 20px;
   }
 
   .unidade_msg {
-    background-color: blueviolet;
+    background-color: rgb(156, 96, 212);
     border: 1px solid #444 ;
     border-radius: 5px;
     padding: 1rem 2rem 1rem 0.5rem;
     margin-bottom: 10px;
+    margin-right: 50%;
+    display: inline-block;
   }
+  .unidade_msg_title {
+    display: inline;
+  }
+
+  .unidade_msg_date {
+    font-size: 9px;
+    margin-left: 90%;
+  }
+
   .unidade_msg_nome {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
   }
+
   .unidade_msg_payload {
-    font-size: 10px;
+    font-size: 14px;
+    margin-top: 5px;
   }

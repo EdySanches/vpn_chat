@@ -8,14 +8,18 @@ const username = sessionStorage.getItem("username")
 /* elementos */
 const messages_container = document.querySelector('.bloco_msgs')
 const bl_chat = document.querySelector('.bloco_chat')
+// const unid_msg_container
 
 const msg1 = {
     username: 'edy',
-    payload: 'aaaaaaaaaaaa'
+    payload: 'aaaaaaaaaaaa',
+    data: format_time(new Date())
+    
 }
 const msg2 = {
     username: 'kelvin',
-    payload: 'bbbbbbbbbbbb'
+    payload: 'bbbbbbbbbbbbbbbbbbbb',
+    data: format_time(new Date())
 }
 const mensagens_array = [ msg1, msg2, msg1, msg2, msg1, msg2, msg1, msg2 ]
 
@@ -50,7 +54,8 @@ function display_messages (msgs_arr) {
         <div class="unidade_msg">
             <div class="unidade_msg_nome">${msg.username}</div>
             <div class="unidade_msg_payload">${msg.payload}</div>
-        </div>
+            <div class="unidade_msg_date">${msg.data}</div>
+            </div>
         `
         messages_container.insertAdjacentHTML('afterbegin', html)
     })
@@ -72,3 +77,14 @@ function send_message() {
       mensagem.value = ''
     }
 }
+
+function format_time(date) {
+    if (!(date instanceof Date)) {
+      throw new Error('Invalid input. Please provide a valid Date object.');
+    }
+  
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+    return `${hours}:${minutes}`;
+  }
