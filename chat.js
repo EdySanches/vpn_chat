@@ -4,25 +4,19 @@ let socket
 const ip = sessionStorage.getItem("ip")
 const username = sessionStorage.getItem("username")
 
+const msg1 = {
+    username: 'sistema',
+    payload: 'Você está online! Inicie uma conversa!',
+    data: format_time(new Date())
+    
+}
+const mensagens_array = [ msg1 ]
 
 /* elementos */
 const messages_container = document.querySelector('.bloco_msgs')
 const bl_chat = document.querySelector('.bloco_chat')
-// const unid_msg_container
 
-const msg1 = {
-    username: 'edy',
-    payload: 'aaaaaaaaaaaa',
-    data: format_time(new Date())
-    
-}
-const msg2 = {
-    username: 'kelvin',
-    payload: 'bbbbbbbbbbbbbbbbbbbb',
-    data: format_time(new Date())
-}
-const mensagens_array = [ msg1, msg2, msg1, msg2 ]
-
+/* inicia o processo */
 init_web_socket(ip, username)
 
 /* funcoes */
@@ -31,11 +25,8 @@ function init_web_socket(ip, username) {
     display_messages(mensagens_array);
 
     const cleanIp = ip.replace(/^http:\/\//, '');
-    //console.log(cleanIp)
-    //console.log(new Date(), `init_web_socket -- cleanIp: ${cleanIp}, username: ${username}`);
 
     try {
-        // Corrigindo o formato da URL removendo "http//"
         socket = new WebSocket(`ws://${cleanIp}`);
         console.log(socket)
 
@@ -45,8 +36,7 @@ function init_web_socket(ip, username) {
           
         socket.addEventListener('message', (event) => {
         try {
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-            console.log('event', JSON.stringify(event))
+
             // Tente analisar a mensagem como JSON
             const mensagemRecebida = JSON.parse(event.data);
             console.log('mensagemRecebida', mensagemRecebida)
@@ -62,8 +52,6 @@ function init_web_socket(ip, username) {
 }
 
 function display_messages (msgs_arr) {
-    /*console.log(new Date(), "display_messages -- messages_container:", messages_container)*/
-    console.log(new Date(), "display_messages -- msgs:", msgs_arr.length)
     msgs_arr.forEach(function (msg, i) {
         const messageString = typeof msg === 'object' ? JSON.stringify(msg) : msg;
 
@@ -81,10 +69,6 @@ function display_messages (msgs_arr) {
 }
 
 function adicionarMensagem(mensagem) {
-
-    console.log(mensagem.username)
-    console.log(mensagem.payload)
-    console.log(mensagem.data)
     let novaMensagem = {
         "username": mensagem.username,
         "payload": mensagem.payload,
@@ -129,4 +113,4 @@ function format_time(date) {
     const minutes = String(date.getMinutes()).padStart(2, '0');
   
     return `${hours}:${minutes}`;
-  }
+}

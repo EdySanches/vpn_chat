@@ -30,17 +30,3 @@ const PORT = 3000;
 server.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
-
-function objectToArrayBuffer(obj) {
-  // Convert the object to a JSON string
-  const jsonString = JSON.stringify(obj);
-
-  // Create a TextEncoder to encode the string into bytes
-  const encoder = new TextEncoder();
-  const encodedData = encoder.encode(jsonString);
-
-  // Create an ArrayBuffer from the encoded bytes
-  const arrayBuffer = encodedData.buffer;
-
-  return arrayBuffer;
-}
